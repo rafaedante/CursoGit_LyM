@@ -1,0 +1,45 @@
+---comandos de configuracion
+
+$ git config [--options] user.name = "nombre"
+$ git config [--options] user.email = "nombre@email.com"
+
+--options
+
+* system: almacena valores para todos los usuarios del sistema y todos sus repos
+* global: especifico de un usuario
+* local: configura en el repo que esten usando actualmente
+
+
+$ git config --global user.name "nombreNuevo" --replace-all
+
+
+$ git config --global --list
+
+
+INICIALIZAR REPOSITORIOS
+
+
+Existen 2 formas de comenzar a trabajar con un proyecto Git, una a partir de un proyecto
+que ya exista en el remoto(Github-GitLab-etc) o si tenemos una carpeta local y queremos que se convierta en un repositorio git.
+
+
+CASO 1: a partir de un repositorio en algun gestor remoto(Github-GitLab-etc) --> CLONAR
+
+$ git clone url_repo
+$ git clone https://github.com/achael/eht-imaging.git
+
+CASO 2: ya existe una carpeta en mi maquina local
+
+$ git init
+
+
+
+GESTION DE ARCHIVOS
+
+$ git status --> me indica si hay archivos untracked o no
+
+$ git add nombre_archivo --> le damos la gestion del archivo a git
+$ git add .		 --> idem anterior
+
+
+$ git commit -m "descripcion o comentario" ---> empaquetar los archivos desde el area staging (que es la q gestiona git)
