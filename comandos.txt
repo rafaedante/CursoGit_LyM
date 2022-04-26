@@ -39,7 +39,67 @@ GESTION DE ARCHIVOS
 $ git status --> me indica si hay archivos untracked o no
 
 $ git add nombre_archivo --> le damos la gestion del archivo a git
-$ git add .		 --> idem anterior
+$ git add .		 --> idem anterior (muchos)
 
+$ git restore nombre_archivo  --> vuelve el archivo al estado anterior
+$ git restore .		      --> idem anterior (muchos)
+$ git restore --staged nombre_archivo --> vuelve el archivo al stado untracked
+
+Remover de Staging
+
+$ git rm --cached nombre_archivo
+
+Empaquetar cambios
 
 $ git commit -m "descripcion o comentario" ---> empaquetar los archivos desde el area staging (que es la q gestiona git)
+
+
+VER DIFERENCIAS
+
+Luego de hacer un commit, si realizamos un cambio, los archivos vuelven a salir de la zona de staging
+
+Cuando esta en este estado, podemos ver los cambios desde el ultimo commit
+
+$ git diff
+
+- En color rojo se ven las lineas modificadas (-)
+- En color verde las lineas con cambios actuales (+)
+
+
+VER Historial de cambios
+
+$ git log // muestra todos los cambios (SHA-1, autor con el email, fecha, mensaje)
+$ git log -n // muestra los ultimos n commits
+$ git log --oneline // forma resumida
+$ git log --oneline --graph --all
+
+// Tambien podemos ver los cambios de un commit en particular
+
+$ git show SHA-1 // alcanza con los primeros 6 digitos
+
+
+RAMAS (Branches)
+
+- una rama es simplemente un puntero movil que señala un commit
+- la rama por defecto de git es la rama master
+
+Que es el puntero HEAD?
+
+El puntero HEAD siempre apunta a la rama donde estoy actualmente. En el ejemplo vimos que apunta a master
+
+Como puedo listar ramas?
+
+$ git branch    // listado de ramas locales
+$ git branch -a // listado de ramas locales y remotas
+
+como creamos ramas?
+
+git checkout nombre_rama   //  creo la rama pero que me quedo donde estoy parado
+
+git checkout -b nombre_rama // creo la rama y me muevo a ella
+
+como me muevo entre ramas?
+
+con el comando checkout me muevo entre ramas( cambio a donde apunta el puntero HEAD)
+
+git checkout nombre_rama
