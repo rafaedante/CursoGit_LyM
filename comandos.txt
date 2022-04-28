@@ -103,3 +103,42 @@ como me muevo entre ramas?
 con el comando checkout me muevo entre ramas( cambio a donde apunta el puntero HEAD)
 
 git checkout nombre_rama
+
+-------------------------------------------
+
+Merge (Fusion)
+
+Una de las ventajas es el uso de ramas para trabajar paralelamente, pero en algun momento la queremos
+juntar(mezclar)
+
+COMO UNIMOS LO QUE HICIMOS EN OTRAS RAMAS A LA RAMA PRINCIPAL
+
+1. Creamos una rama basada en otra					$ git checkout -b rama
+2- Trabajamos en la rama nueva
+3- Guardamos los cambios (commit)					$ git commit -m "cambios2
+4- Nos ubicamos en la rama donde queremos que los cambios se mezclen	$ git checkout master
+5- Fusionamos los cambios						$ git merge rama
+6- Podemos eliminar la rama ya "mergeada"				$ git branch -d rama
+
+Que puede ocurrir al realizar "merge"?
+
+Podemos tener conflictos o no.
+
+
+- Casos donde No hay conflicto!
+
+
+Merge "fast-forward" (avance rapido)
+
+- Si no se realizo ningun commit en el master mientras hacia un commit en la rama.
+
+Merge "no fast-forward"
+
+- Si quiero que se cree un commit
+
+$ git merge --no-ff nombre_rama
+
+Merge "3-way" (a 3 bandas)
+
+- Si la rama sufre cambios despues de haber creado la rama nueva, git realiza un merge a 3 bandas
+
