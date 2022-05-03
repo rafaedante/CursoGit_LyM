@@ -142,3 +142,67 @@ Merge "3-way" (a 3 bandas)
 
 - Si la rama sufre cambios despues de haber creado la rama nueva, git realiza un merge a 3 bandas
 
+
+
+- Que pasa cuando hay conflicto????
+
+	* Ocurren un conflicto cuando se modifican las mismas lineas de codigo tanto en la rama original como en la nueva rama creada
+	* Git avisa que se debe resolver el conflicto
+	* Vamos a tener que elegir con que quedarnos:
+		- dejar el contenido de la rama orginal
+		- dejar el contenido de la rama nueva
+		- dejar ambos contenidos
+		- modificar lo necesario y creamos un nuevo contenido
+	* Se guarda el archivo y se termina el merge
+	* se guarda el archivo y se termina el merge (agregando a staging y haciendo un ultimo commit)
+
+
+
+Repositorio Remoto
+
+* La version del proyecto alojada en internet donde vamos a poder colaborar y agregar nuestros cambios
+
+$ git remote  // los repositorios x defecto se llaman origin
+origin 
+
+
+$ git remote -v // esta opcion lista con mas detalle
+
+origin URL_REPO (fetch o pull)
+origin URL_REPO (push)
+
+$  git remote show origin  // no muestas mas detalle del repo remoto y adonde apunta el HEAD
+
+$ git remote add [nombre_repo] [URL]  // agregamos un repo remoto
+
+$ git remote rm [nombre_repo]   	// eliminar un vinculo a repositorio remoto
+
+
+Subir contenido local al repo remoto
+
+$ git push [nombre_rep] [nombre_rama_local]
+$ git push origin master
+
+
+Como obtengo la informacion del repo remoto?
+
+$ git fetch [nombre_repo]  // git fetch origin
+$ git pull [nombre_repo]  // git pull origin
+
+Si queremos trabajar con otra rama diferente a la rama base
+
+$ git fetch origin nombre_rama_noBase
+
+$ git pull origin nombre_rama_noBase
+
+
+Cual es la diferencia entre fetch y pull
+
+	* el fetch recupera todos los datos del repositorio en una carpeta oculta "origin/master"
+	* Si quiero guardar los cambios tengo que hacer un merge
+	* el comando pull realiza la misma descarga que fetch pero me agrega un merge automatico
+	* git pull = git fetch + git merge
+
+Clonacion a partir de una rama especifica
+
+$ git clone --branch [nombre_rama] [URL_REPO]
