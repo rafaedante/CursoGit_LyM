@@ -206,3 +206,124 @@ Cual es la diferencia entre fetch y pull
 Clonacion a partir de una rama especifica
 
 $ git clone --branch [nombre_rama] [URL_REPO]
+
+
+
+Pull Request
+
+Como mezclo(merge) mi rama subida en la rama master remota?
+
+	* Por lo general trabajamos con ramas (no master) y lo que subimos al repositorio remoto son las ramas
+
+Como hacer un Pull Request?
+
+	* Es un pedido de merge en el repositorio remoto(desde la interfaz de Github), Github lo llama pull request y GitLab lo llama merge request
+
+
+Tags (Etiquetas)
+
+ * Git permite crear etiquetas (tag) que son puntos especificos en la historia y lo consideramos como importantes
+ * Generalmente se suelen usar para marcar versiones de proyetos( v1.0, v1.1...)
+
+Crea un Tag
+
+$ git tag [nombre] // Ej: git tag v1.0
+
+Listar Tags
+
+$ git tag  // este comando lista los tags en orden alfabetico
+
+ * Cuando creamos un tag lo pone en el ultimo commit
+
+
+Ver el contenido de un tag
+
+$ git show [nombre] // Ej: git show v1.0
+
+
+SUBIR los tags al repositorio Remoto
+
+* Un unico tag
+
+$ git push origin [nombre_tag]
+
+
+* Todos los tags
+
+$ git push --tags
+
+
+Stash (Almacenado Temporario)
+
+- Puede que necesite cambiar de rama durante un breve tiempo para trabajar en otro tema urgente.
+
+- Esto plantea el problema de confirma (commit) cambios en un trabajo a medio hacer
+
+- Una solucion es el comando "git stash"
+
+- toma el estado del espacio de trabajo, con todas las modificaciones y lo guarda en una pila o memoria provisional.
+
+- Luego se podria recuperar
+
+
+
+Procedimiento
+
+- Crear una rama nueva
+- Realizar las modificaciones correspondientes pero no agregar a staging
+- Utilizar el comando $ git stash para guardar los cambios temporalmente
+- Verificar con $ git status y comprobar que quedo limpio el espacio de trabajo
+- ahora podemos cambiar de rama para resolver otro problema urgente
+- se realizan los cambios y se comitean
+- volvemos a la rama con el contenido temporal y verificamos con el comando:
+	$ git stash list
+- retornar los cambios para continuar con el requerimiento, usamos el comando:
+	$ git stash apply
+	$ git stash apply stash@{0}   // que tome los cambios de un stash
+- si queremos borrar un stashen particular
+	$ git stash drop stash@{0}
+
+Crear una rama desde el stash
+
+$ git stash
+$ git stash branch nombre_rama // crea una rama nueva con los cambios
+
+
+
+Revertir Commits
+
+la mayoria de las veces no es recomendable revertir o eliminar commits pero en algunas ocasiones
+podemos necesitar hacerlo.
+
+Trabajando Local( antes de hacer el push al repo remoto)
+
+
+- Podemos utilizar el comando reset con la opcion --hard
+
+$ git reset --hard HEAD~n  // si n=1, elimina el ultimo commit
+$ git reset --hard sha-commit // se puede indicar el codigo del commit donde queremos que se quede
+
+- Si queremos eliminar el commit pero no perder los cambios(dejarlos en la zona de staging)
+
+$ git reset --soft HEAD~n  // si n=1, elimina el ultimo commit
+$ git reset --soft sha-commit // se puede indicar el codigo del commit donde queremos que se quede
+
+
+
+Si ya hicimos un push al repo remoto
+
+- lo mejor realizar un nuevo commit que borre el commit que queremos eliminar utilizando el comando revert
+
+$ git revert HEAD~n  
+$ git revert sha-commit
+
+Si queremos borrar un commit de Github
+
+$ git reset --hard HEAD~n   // primer paso localmente
+$ git push --force origin rama // forzams el push
+
+
+
+Eliminar archivo y todas sus referencias
+
+$ git filter-branch --tree-filter "rm -f nombre_archivo" HEAD
